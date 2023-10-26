@@ -21,7 +21,7 @@ public class AboutUsAction extends AbstractClassyAction{
         aboutUsFrame.add(mainPanel);
 
         // Skaliranje slike
-        ImageIcon originalIconAndrija = loadImage("/images/andrijavlajkovic_slika.JPG");
+        ImageIcon originalIconAndrija = loadImage("/images/andrijavlajkovic_slika.jpg");
         Image imgAndrija = originalIconAndrija.getImage().getScaledInstance(200, 300, Image.SCALE_SMOOTH);
         ImageIcon scaledIconAndrija = new ImageIcon(imgAndrija);
 
@@ -35,7 +35,7 @@ public class AboutUsAction extends AbstractClassyAction{
         mainPanel.add(panelAndrija);
 
         // Skaliranje slike
-        ImageIcon originalIconVladimir = loadImage("/images/andrijavlajkovic_slika.JPG");
+        ImageIcon originalIconVladimir = loadImage("/images/vladimirmiljkovic_slika.jpg");
         Image imgVladimir = originalIconVladimir.getImage().getScaledInstance(200, 300, Image.SCALE_SMOOTH);
         ImageIcon scaledIconVladimir = new ImageIcon(imgVladimir);
 
