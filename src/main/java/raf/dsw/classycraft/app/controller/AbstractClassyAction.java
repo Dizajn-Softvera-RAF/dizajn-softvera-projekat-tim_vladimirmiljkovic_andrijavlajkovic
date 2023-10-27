@@ -20,14 +20,5 @@ public abstract class AbstractClassyAction extends AbstractAction {
         return icon;
     }
 
-    public ImageIcon loadImage(String fileName) {
-        URL imageURL = getClass().getResource(fileName);
-        ImageIcon imageIcon = null;
-        if (imageURL != null) {
-            imageIcon = new ImageIcon(imageURL);
-        } else {
-            System.err.println("Resource not found: " + fileName);
-        }
-        return imageIcon;
-    }
+
 }
