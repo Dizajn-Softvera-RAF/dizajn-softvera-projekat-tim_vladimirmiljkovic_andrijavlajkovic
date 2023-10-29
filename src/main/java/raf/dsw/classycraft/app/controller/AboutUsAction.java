@@ -12,6 +12,7 @@ public class AboutUsAction extends AbstractClassyAction{
 
     @Override
     public void actionPerformed(ActionEvent e) {
+
        new AboutUsView();
 
 
