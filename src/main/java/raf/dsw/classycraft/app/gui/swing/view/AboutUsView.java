@@ -38,7 +38,7 @@ public class AboutUsView   {
         panelAndrija.add(nameLabelAndrija);
         mainPanel.add(panelAndrija);
 
-        Component horizontalStrut = Box.createHorizontalStrut(50); // 50 is the width of the invisible component, acting as a spacer.
+        Component horizontalStrut = Box.createHorizontalStrut(50);
         mainPanel.add(horizontalStrut);
 
         // Skaliranje slike
