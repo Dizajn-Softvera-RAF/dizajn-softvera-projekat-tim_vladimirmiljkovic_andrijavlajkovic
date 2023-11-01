@@ -7,13 +7,15 @@ public class ApplicationFramework {
     private static ApplicationFramework instance;
 
     //buduca polja za model celog projekta
+    protected ClassyRepository classyRepository;
 
     private ApplicationFramework(){
 
     }
 
-    public void initialize(){
+    public void initialize(ClassyRepository classyRepository){
         MainFrame.getInstance().setVisible(true);
+        this.classyRepository = classyRepository;
     }
 
     public static ApplicationFramework getInstance(){
