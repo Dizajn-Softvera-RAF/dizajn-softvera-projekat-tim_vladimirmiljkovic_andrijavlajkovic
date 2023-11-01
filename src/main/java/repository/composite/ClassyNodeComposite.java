@@ -20,12 +20,4 @@ public abstract class ClassyNodeComposite extends ClassyNode{
 
     public abstract void removeChild(ClassyNode child);
 
-    public ClassyNode getChildByName(String name) {
-        for (ClassyNode child: this.getChildren()) {
-            if (name.equals(child.getName())) {
-                return child;
-            }
-        }
-        return null;
-    }
 }
