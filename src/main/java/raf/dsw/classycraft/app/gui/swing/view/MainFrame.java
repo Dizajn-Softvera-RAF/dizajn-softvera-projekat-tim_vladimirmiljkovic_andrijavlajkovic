@@ -3,6 +3,11 @@ package raf.dsw.classycraft.app.gui.swing.view;
 import lombok.Getter;
 import lombok.Setter;
 import raf.dsw.classycraft.app.controller.ActionManager;
+import raf.dsw.classycraft.app.errorHandler.Message;
+import raf.dsw.classycraft.app.errorHandler.MessageGenerator;
+import raf.dsw.classycraft.app.errorHandler.MessageType;
+import raf.dsw.classycraft.app.observer.ISubscriber;
+import raf.dsw.classycraft.app.observer.Notification;
 
 import javax.swing.*;
 import java.awt.*;
@@ -10,12 +15,13 @@ import java.awt.*;
 @Getter
 @Setter
 
-public class MainFrame extends JFrame {
+public class MainFrame extends JFrame implements ISubscriber {
     private static MainFrame instance;
 
     //buduca polja za sve komponente view-a na glavnom prozoru
     private ActionManager actionManager;
 
+    private MessageGenerator messageGenerator;
     private MainFrame(){
 
     }
@@ -23,6 +29,9 @@ public class MainFrame extends JFrame {
     private void initialize(){
 
         actionManager = new ActionManager();
+
+        messageGenerator = new MessageGenerator();
+        messageGenerator.addSubscriber(this);
 
         Toolkit kit = Toolkit.getDefaultToolkit();
         Dimension screenSize = kit.getScreenSize();
@@ -52,5 +61,28 @@ public class MainFrame extends JFrame {
         return instance;
     }
 
+    private int getJOptionPaneMessageType(MessageType messageType) {
+        switch (messageType) {
+            case ERROR:
+                return JOptionPane.ERROR_MESSAGE;
+            case WARNING:
+                return JOptionPane.WARNING_MESSAGE;
+            case INFO:
+                return JOptionPane.INFORMATION_MESSAGE;
+            default:
+                return JOptionPane.PLAIN_MESSAGE;
+        }
+    }
 
+    public void update(Notification notification) {
+        if (notification.getObjectOfNotification() instanceof Message) {
+            Message message = (Message) notification.getObjectOfNotification();
+            JOptionPane.showMessageDialog(
+                    this,
+                    message.getContent(),
+                    message.getType().toString(),
+                    getJOptionPaneMessageType(message.getType())
+            );
+        }
+    }
 }
