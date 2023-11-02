@@ -4,7 +4,6 @@ import lombok.Getter;
 import lombok.Setter;
 import raf.dsw.classycraft.app.controller.ActionManager;
 import raf.dsw.classycraft.app.errorHandler.Message;
-import raf.dsw.classycraft.app.errorHandler.MessageGenerator;
 import raf.dsw.classycraft.app.errorHandler.MessageType;
 import raf.dsw.classycraft.app.observer.ISubscriber;
 import raf.dsw.classycraft.app.observer.Notification;
@@ -21,7 +20,7 @@ public class MainFrame extends JFrame implements ISubscriber {
     //buduca polja za sve komponente view-a na glavnom prozoru
     private ActionManager actionManager;
 
-    private MessageGenerator messageGenerator;
+
     private MainFrame(){
 
     }
@@ -29,9 +28,6 @@ public class MainFrame extends JFrame implements ISubscriber {
     private void initialize(){
 
         actionManager = new ActionManager();
-
-        messageGenerator = new MessageGenerator();
-        messageGenerator.addSubscriber(this);
 
         Toolkit kit = Toolkit.getDefaultToolkit();
         Dimension screenSize = kit.getScreenSize();
