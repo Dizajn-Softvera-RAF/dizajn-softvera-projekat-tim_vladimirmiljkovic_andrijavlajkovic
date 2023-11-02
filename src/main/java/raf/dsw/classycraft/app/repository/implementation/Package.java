@@ -1,7 +1,7 @@
-package repository.implementation;
+package raf.dsw.classycraft.app.repository.implementation;
 
-import repository.composite.ClassyNode;
-import repository.composite.ClassyNodeComposite;
+import raf.dsw.classycraft.app.repository.composite.ClassyNode;
+import raf.dsw.classycraft.app.repository.composite.ClassyNodeComposite;
 
 public class Package extends ClassyNodeComposite {
     public Package(String name, ClassyNode parent) {

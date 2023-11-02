@@ -1,6 +1,6 @@
 package raf.dsw.classycraft.app.core;
 
-import repository.implementation.ProjectExplorer;
+import raf.dsw.classycraft.app.repository.implementation.ProjectExplorer;
 
 public interface ClassyRepository {
     ProjectExplorer getRoot();

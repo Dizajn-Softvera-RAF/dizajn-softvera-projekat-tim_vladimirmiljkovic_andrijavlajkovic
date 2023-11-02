@@ -1,4 +1,4 @@
-package repository.composite;
+package raf.dsw.classycraft.app.repository.composite;
 
 import lombok.Getter;
 import lombok.Setter;
