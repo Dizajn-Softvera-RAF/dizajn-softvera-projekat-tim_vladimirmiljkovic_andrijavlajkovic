@@ -1,6 +1,5 @@
 package raf.dsw.classycraft.app.errorHandler;
 
-import raf.dsw.classycraft.app.observer.ISubscriber;
 import raf.dsw.classycraft.app.observer.Notification;
 
 import java.io.BufferedWriter;
@@ -9,7 +8,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.time.format.DateTimeFormatter;
 
-public class FileLogger implements ISubscriber {
+public class FileLogger implements Logger {
 
     private File logFile;
 
@@ -33,7 +32,7 @@ public class FileLogger implements ISubscriber {
                 message.getContent());
     }
 
-    private void log(String message) {
+    public void log(String message) {
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(logFile, true))) {
             writer.write(message);
             writer.newLine();
