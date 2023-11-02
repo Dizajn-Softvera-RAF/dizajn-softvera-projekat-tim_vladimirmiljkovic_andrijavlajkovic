@@ -1,5 +1,10 @@
 package raf.dsw.classycraft.app.observer;
 
+import lombok.Getter;
+import lombok.Setter;
+
+@Getter
+@Setter
 public class Notification {
     private Object objectOfNotification;
     private NotificationType notificationType;
