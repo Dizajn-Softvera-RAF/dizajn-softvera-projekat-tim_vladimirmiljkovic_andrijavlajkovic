@@ -2,6 +2,7 @@ package raf.dsw.classycraft.app.repository.composite;
 
 import lombok.Getter;
 import lombok.Setter;
+import lombok.ToString;
 
 import java.util.Objects;
 
@@ -11,7 +12,7 @@ import java.util.Objects;
 public abstract class ClassyNode {
 
     private String name;
-
+    
     private ClassyNode parent;
 
     public ClassyNode(String name, ClassyNode parent) {
