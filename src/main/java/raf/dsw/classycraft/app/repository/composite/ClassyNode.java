@@ -21,11 +21,12 @@ public abstract class ClassyNode {
     }
 
     @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        ClassyNode that = (ClassyNode) o;
-        return name.equals(that.name);
+    public boolean equals(Object obj) {
+        if (obj != null && obj instanceof ClassyNode) {
+            ClassyNode otherObj = (ClassyNode) obj;
+            return this.getName().equals(otherObj.getName());
+        }
+        return false;
     }
 
     @Override

@@ -17,7 +17,7 @@ public class ActionManager {
     private void initialiseActions(){
         exitAction = new ExitAction();
         aboutUsAction= new AboutUsAction();
-        newProjectAction= newProjectAction;
+        newProjectAction = new NewProjectAction();
     }
 
 }

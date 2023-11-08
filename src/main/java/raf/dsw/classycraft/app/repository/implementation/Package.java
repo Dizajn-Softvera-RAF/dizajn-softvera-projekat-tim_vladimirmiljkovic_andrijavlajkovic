@@ -4,8 +4,14 @@ import raf.dsw.classycraft.app.repository.composite.ClassyNode;
 import raf.dsw.classycraft.app.repository.composite.ClassyNodeComposite;
 
 public class Package extends ClassyNodeComposite {
-    public Package(String name, ClassyNode parent) {
+
+    private String author;
+    private String resourceFolderPath;
+
+    public Package(String name, String author, String resourceFolderPath, ClassyNode parent) {
         super(name, parent);
+        this.author = author;
+        this.resourceFolderPath = resourceFolderPath;
     }
 
     @Override
