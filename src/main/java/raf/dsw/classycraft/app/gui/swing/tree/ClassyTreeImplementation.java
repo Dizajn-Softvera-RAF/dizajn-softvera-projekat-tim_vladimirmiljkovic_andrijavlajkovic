@@ -14,6 +14,7 @@ import java.util.Random;
 public class ClassyTreeImplementation implements  ClassyTree{
     private ClassyTreeView treeView;
     private DefaultTreeModel treeModel;
+    int i = 0;
 
     @Override
     public ClassyTreeView generateTree(ProjectExplorer projectExplorer) {
@@ -43,9 +44,9 @@ public class ClassyTreeImplementation implements  ClassyTree{
 
     private ClassyNode createChild(ClassyNode parent) {
         if (parent instanceof ProjectExplorer) {
-            String projectName = "Project" + new Random().nextInt(100);
-            String author = "Author" + new Random().nextInt(100);
-            String resourceFolderPath = "Path" + new Random().nextInt(100);
+            String projectName = "Project" + i++;
+            String author = "Author" + i;
+            String resourceFolderPath = "Path" + i;
             return new Project(projectName, author, resourceFolderPath, parent);
         }
         return null;
