@@ -4,17 +4,22 @@ import raf.dsw.classycraft.app.gui.swing.tree.model.ClassyTreeItem;
 import raf.dsw.classycraft.app.gui.swing.tree.view.ClassyTreeView;
 import raf.dsw.classycraft.app.repository.composite.ClassyNode;
 import raf.dsw.classycraft.app.repository.composite.ClassyNodeComposite;
+import raf.dsw.classycraft.app.repository.implementation.Diagram;
+import raf.dsw.classycraft.app.repository.implementation.Package;
 import raf.dsw.classycraft.app.repository.implementation.Project;
 import raf.dsw.classycraft.app.repository.implementation.ProjectExplorer;
 
 import javax.swing.*;
 import javax.swing.tree.DefaultTreeModel;
+import javax.swing.tree.MutableTreeNode;
 import java.util.Random;
 
 public class ClassyTreeImplementation implements  ClassyTree{
     private ClassyTreeView treeView;
     private DefaultTreeModel treeModel;
-    int i = 0;
+    int i = 1;
+    int j = 1;
+    int k = 1;
 
     @Override
     public ClassyTreeView generateTree(ProjectExplorer projectExplorer) {
@@ -38,6 +43,11 @@ public class ClassyTreeImplementation implements  ClassyTree{
     }
 
     @Override
+    public void removeChild(ClassyTreeItem parent) {
+
+    }
+
+    @Override
     public ClassyTreeItem getSelectedNode() {
         return (ClassyTreeItem) treeView.getLastSelectedPathComponent();
     }
@@ -48,6 +58,18 @@ public class ClassyTreeImplementation implements  ClassyTree{
             String author = "Author" + i;
             String resourceFolderPath = "Path" + i;
             return new Project(projectName, author, resourceFolderPath, parent);
+        }
+        else if (parent instanceof Project) {
+            String packageName = "Package" + j++;
+            String author = "Author" + j;
+            String resourceFolderPath = "Path" + j;
+            return new Package(packageName, author, resourceFolderPath, parent);
+        }
+        else if (parent instanceof Package) {
+            String diagramName = "Diagram" + k++;
+            String author = "Author" + k;
+            String resourceFolderPath = "Path" + k;
+            return new Diagram(diagramName, parent);
         }
         return null;
     }

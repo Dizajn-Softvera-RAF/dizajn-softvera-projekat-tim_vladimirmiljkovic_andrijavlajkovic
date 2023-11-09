@@ -12,8 +12,8 @@ public class NewProjectAction extends AbstractClassyAction{
         putValue(ACCELERATOR_KEY, KeyStroke.getKeyStroke(
                 KeyEvent.VK_N, ActionEvent.CTRL_MASK));
         putValue(SMALL_ICON, loadIcon("/images/plus.png"));
-        putValue(NAME, "New Project");
-        putValue(SHORT_DESCRIPTION, "New Project");
+        putValue(NAME, "New");
+        putValue(SHORT_DESCRIPTION, "New");
     }
 
     public void actionPerformed(ActionEvent arg0) {

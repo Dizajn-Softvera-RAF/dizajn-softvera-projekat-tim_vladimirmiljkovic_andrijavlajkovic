@@ -28,5 +28,5 @@ public abstract class ClassyNodeComposite extends ClassyNode{
     }
 
     public abstract void removeChild(ClassyNode child);
-
 }
+
