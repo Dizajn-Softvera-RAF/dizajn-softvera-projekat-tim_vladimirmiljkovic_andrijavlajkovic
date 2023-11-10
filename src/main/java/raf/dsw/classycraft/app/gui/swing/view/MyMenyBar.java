@@ -13,6 +13,9 @@ public class MyMenyBar extends JMenuBar {
         fileMenu.setMnemonic(KeyEvent.VK_F);
         fileMenu.add(MainFrame.getInstance().getActionManager().getExitAction());
         fileMenu.add(MainFrame.getInstance().getActionManager().getNewProjectAction());
+        fileMenu.add(MainFrame.getInstance().getActionManager().getNewPackageAction());
+        fileMenu.add(MainFrame.getInstance().getActionManager().getRemoveProjectAction());
+        fileMenu.add(MainFrame.getInstance().getActionManager().getEditProjectAction());
         add(fileMenu);
 
         JMenu editMenu = new JMenu("Edit");

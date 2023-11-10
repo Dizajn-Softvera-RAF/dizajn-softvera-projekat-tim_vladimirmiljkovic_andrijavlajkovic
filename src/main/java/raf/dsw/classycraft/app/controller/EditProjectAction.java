@@ -7,17 +7,18 @@ import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
 
-public class NewProjectAction extends AbstractClassyAction{
-    public NewProjectAction() {
+public class EditProjectAction extends AbstractClassyAction{
+
+    public EditProjectAction() {
         putValue(ACCELERATOR_KEY, KeyStroke.getKeyStroke(
-                KeyEvent.VK_N, ActionEvent.CTRL_MASK));
-        putValue(SMALL_ICON, loadIcon("/images/plus.png"));
-        putValue(NAME, "New");
-        putValue(SHORT_DESCRIPTION, "New");
+                KeyEvent.VK_E, ActionEvent.CTRL_MASK));
+        putValue(SMALL_ICON, loadIcon("/images/edit.png"));
+        putValue(NAME, "Edit");
+        putValue(SHORT_DESCRIPTION, "Edit");
     }
 
     public void actionPerformed(ActionEvent e) {
         ClassyTreeItem selected = (ClassyTreeItem) MainFrame.getInstance().getClassyTree().getSelectedNode();
-        MainFrame.getInstance().getClassyTree().addChild(selected);
+        MainFrame.getInstance().getClassyTree().editChild(selected);
     }
 }

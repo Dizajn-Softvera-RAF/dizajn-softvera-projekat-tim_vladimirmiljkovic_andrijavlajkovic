@@ -8,7 +8,6 @@ import java.awt.event.KeyEvent;
 public class ExitAction extends AbstractClassyAction {
 
     public ExitAction(){
-
         //bitno
         putValue(ACCELERATOR_KEY, KeyStroke.getKeyStroke(KeyEvent.VK_F4, ActionEvent.ALT_MASK));
         putValue(SMALL_ICON, loadIcon("/images/exit.png"));

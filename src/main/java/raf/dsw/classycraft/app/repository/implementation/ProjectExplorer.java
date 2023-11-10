@@ -10,7 +10,12 @@ public class ProjectExplorer extends ClassyNodeComposite {
 
     @Override
     public void addChild(ClassyNode child) {
-        children.add(child);
+        if (child != null &&  child instanceof Project){
+            Project projekat = (Project) child;
+            if (!this.getChildren().contains(projekat)){
+                this.getChildren().add(projekat);
+            }
+        }
     }
 
     @Override
