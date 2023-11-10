@@ -13,7 +13,7 @@ public class FileLogger implements Logger {
     private File logFile;
 
     public FileLogger() {
-        this.logFile = new File("src/main/resources/log.txt");
+        this.logFile = new File(getClass().getResource("log/log.txt").getFile());
     }
 
     @Override
