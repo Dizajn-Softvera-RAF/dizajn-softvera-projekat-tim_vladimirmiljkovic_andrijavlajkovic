@@ -16,9 +16,7 @@ import javax.swing.tree.DefaultTreeModel;
 public class ClassyTreeImplementation implements ClassyTree{
     private ClassyTreeView treeView;
     private DefaultTreeModel treeModel;
-    int i = 1;
     int j = 1;
-    int k = 1;
 
     @Override
     public ClassyTreeView generateTree(ProjectExplorer projectExplorer) {
@@ -92,22 +90,23 @@ public class ClassyTreeImplementation implements ClassyTree{
 //            return new Diagram(diagramName, parent);
 //        }
 //        return null;
-        FactoryAbstract factoryAbstract = FactoryUtils();
+        FactoryAbstract factoryAbstract = FactoryUtils.getFactory(parent);
+        return factoryAbstract.getClassyNode(parent);
     }
 
     private ClassyNode createPackage(ClassyNode parent) {
         if (parent instanceof Project) {
             String packageName = "Package" + j++;
-            String author = "Author" + j;
-            String resourceFolderPath = "Path" + j;
-            return new Package(packageName, author, resourceFolderPath, parent);
+            return new Package(packageName, parent);
         }
         else if (parent instanceof Package) {
             String packageName = "Package" + j++;
-            String author = "Author" + j;
-            String resourceFolderPath = "Path" + j;
-            return new Package(packageName, author, resourceFolderPath, parent);
+            return new Package(packageName, parent);
         }
         return null;
+    }
+
+    public int getJ() {
+        return j;
     }
 }
