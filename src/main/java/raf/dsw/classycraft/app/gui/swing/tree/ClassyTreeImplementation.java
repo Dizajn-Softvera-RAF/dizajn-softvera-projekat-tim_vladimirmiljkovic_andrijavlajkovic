@@ -2,7 +2,6 @@ package raf.dsw.classycraft.app.gui.swing.tree;
 
 import raf.dsw.classycraft.app.gui.swing.tree.model.ClassyTreeItem;
 import raf.dsw.classycraft.app.gui.swing.tree.view.ClassyTreeView;
-import raf.dsw.classycraft.app.observer.Notification;
 import raf.dsw.classycraft.app.repository.composite.ClassyNode;
 import raf.dsw.classycraft.app.repository.composite.ClassyNodeComposite;
 import raf.dsw.classycraft.app.repository.implementation.Diagram;
@@ -12,9 +11,6 @@ import raf.dsw.classycraft.app.repository.implementation.ProjectExplorer;
 
 import javax.swing.*;
 import javax.swing.tree.DefaultTreeModel;
-import javax.swing.tree.MutableTreeNode;
-import java.util.Random;
-
 public class ClassyTreeImplementation implements  ClassyTree{
     private ClassyTreeView treeView;
     private DefaultTreeModel treeModel;
@@ -45,28 +41,23 @@ public class ClassyTreeImplementation implements  ClassyTree{
 
     @Override
     public void addPackage(ClassyTreeItem parent) {
-        if(parent != null){
-            ClassyNode child = createPackage(parent.getClassyNode());
-            parent.add(new ClassyTreeItem(child));
-            ((ClassyNodeComposite) parent.getClassyNode()).addChild(child);
-            treeView.expandPath(treeView.getSelectionPath());
-            SwingUtilities.updateComponentTreeUI(treeView);
-        }
-        else{
-            return;//TREBA DA JAVI GRESKU DA NE MOZE PAKET DA SE PRAVI U PROJECT EXPLORERU
-        }
+        if (!(parent.getClassyNode() instanceof ClassyNodeComposite))
+            return;//OVDE SE ISPISUJE PORUKA DA NIJE MOGUCE DODATI PEKIDZ U DIJAGRAM
+        if(parent.getClassyNode().getParent() == null)
+            return;//OVDE SE ISPISUJE PORUKA DA NIJE MOGUCE DODATI PEKIDZ U PROJECT EXPLORER
+        ClassyNode child = createPackage(parent.getClassyNode());
+        parent.add(new ClassyTreeItem(child));
+        ((ClassyNodeComposite) parent.getClassyNode()).addChild(child);
+        treeView.expandPath(treeView.getSelectionPath());
+        SwingUtilities.updateComponentTreeUI(treeView);
 
     }
 
     @Override
     public void removeChild(ClassyTreeItem parent) {
-        if(parent != null) {
-            treeModel.removeNodeFromParent(parent);
-        }
-        else{
-            //OVDE SE POZIVA GRESKA DA NE SME DA SE OBRISE PROJECT EXPLORER!
-        }
-
+        if(parent.getClassyNode().getParent() == null)
+            return;////OVDE SE POZIVA GRESKA DA NE SME DA SE OBRISE PROJECT EXPLORER!
+        treeModel.removeNodeFromParent(parent);
     }
 
     @Override
@@ -94,8 +85,6 @@ public class ClassyTreeImplementation implements  ClassyTree{
         }
         else if (parent instanceof Package) {
             String diagramName = "Diagram" + k++;
-            String author = "Author" + k;
-            String resourceFolderPath = "Path" + k;
             return new Diagram(diagramName, parent);
         }
         return null;
