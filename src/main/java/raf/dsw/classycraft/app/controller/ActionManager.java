@@ -10,7 +10,9 @@ public class ActionManager {
     private ExitAction exitAction;
     private AboutUsAction aboutUsAction;
     private NewProjectAction newProjectAction;
+    private NewPackageAction newPackageAction;
     private RemoveProjectAction removeProjectAction;
+    private EditProjectAction editProjectAction;
     public ActionManager(){
         initialiseActions();
     }
@@ -19,7 +21,9 @@ public class ActionManager {
         exitAction = new ExitAction();
         aboutUsAction= new AboutUsAction();
         newProjectAction = new NewProjectAction();
+        newPackageAction = new NewPackageAction();
         removeProjectAction = new RemoveProjectAction();
+        editProjectAction = new EditProjectAction();
     }
 
 }

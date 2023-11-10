@@ -2,6 +2,7 @@ package raf.dsw.classycraft.app.gui.swing.tree;
 
 import raf.dsw.classycraft.app.gui.swing.tree.model.ClassyTreeItem;
 import raf.dsw.classycraft.app.gui.swing.tree.view.ClassyTreeView;
+import raf.dsw.classycraft.app.observer.Notification;
 import raf.dsw.classycraft.app.repository.composite.ClassyNode;
 import raf.dsw.classycraft.app.repository.composite.ClassyNodeComposite;
 import raf.dsw.classycraft.app.repository.implementation.Diagram;
@@ -43,7 +44,33 @@ public class ClassyTreeImplementation implements  ClassyTree{
     }
 
     @Override
+    public void addPackage(ClassyTreeItem parent) {
+        if(parent != null){
+            ClassyNode child = createPackage(parent.getClassyNode());
+            parent.add(new ClassyTreeItem(child));
+            ((ClassyNodeComposite) parent.getClassyNode()).addChild(child);
+            treeView.expandPath(treeView.getSelectionPath());
+            SwingUtilities.updateComponentTreeUI(treeView);
+        }
+        else{
+            return;//TREBA DA JAVI GRESKU DA NE MOZE PAKET DA SE PRAVI U PROJECT EXPLORERU
+        }
+
+    }
+
+    @Override
     public void removeChild(ClassyTreeItem parent) {
+        if(parent != null) {
+            treeModel.removeNodeFromParent(parent);
+        }
+        else{
+            //OVDE SE POZIVA GRESKA DA NE SME DA SE OBRISE PROJECT EXPLORER!
+        }
+
+    }
+
+    @Override
+    public void editChild(ClassyTreeItem selected) {
 
     }
 
@@ -70,6 +97,22 @@ public class ClassyTreeImplementation implements  ClassyTree{
             String author = "Author" + k;
             String resourceFolderPath = "Path" + k;
             return new Diagram(diagramName, parent);
+        }
+        return null;
+    }
+
+    private ClassyNode createPackage(ClassyNode parent) {
+        if (parent instanceof Project) {
+            String packageName = "Package" + j++;
+            String author = "Author" + j;
+            String resourceFolderPath = "Path" + j;
+            return new Package(packageName, author, resourceFolderPath, parent);
+        }
+        else if (parent instanceof Package) {
+            String packageName = "Package" + j++;
+            String author = "Author" + j;
+            String resourceFolderPath = "Path" + j;
+            return new Package(packageName, author, resourceFolderPath, parent);
         }
         return null;
     }
