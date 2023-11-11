@@ -5,6 +5,7 @@ import raf.dsw.classycraft.app.repository.implementation.Project;
 import raf.dsw.classycraft.app.repository.implementation.ProjectExplorer;
 
 public class FactoryProject extends FactoryAbstract{
+    static int i=1;
 
     public FactoryProject(String name, ClassyNode parent) {
         super(name, parent);
@@ -12,9 +13,9 @@ public class FactoryProject extends FactoryAbstract{
 
     @Override
     public ClassyNode createNode(ClassyNode parent) {
-            String projectName = "Project";
-            String author = "Author";
-            String resourceFolderPath = "Path";
+            String projectName = "Project" + i++;
+            String author = "Author" + i;
+            String resourceFolderPath = "Path" + i;
             return new Project(projectName, author, resourceFolderPath, parent);
     }
 

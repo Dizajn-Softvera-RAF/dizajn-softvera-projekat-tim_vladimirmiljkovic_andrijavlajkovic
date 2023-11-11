@@ -7,12 +7,12 @@ public class FactoryDiagram extends FactoryAbstract{
     public FactoryDiagram(String name, ClassyNode parent) {
         super(name, parent);
     }
-
+    static int i=1;
 
 
     @Override
     public ClassyNode createNode(ClassyNode parent) {
-        String diagramName = "Diagram";
+        String diagramName = "Diagram" + i++;
         return new Diagram(diagramName, parent);
     }
 }

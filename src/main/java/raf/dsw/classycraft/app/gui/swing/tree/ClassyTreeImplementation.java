@@ -1,5 +1,6 @@
 package raf.dsw.classycraft.app.gui.swing.tree;
 
+import raf.dsw.classycraft.app.errorHandler.MessageGenerator;
 import raf.dsw.classycraft.app.factory.FactoryAbstract;
 import raf.dsw.classycraft.app.factory.FactoryUtils;
 import raf.dsw.classycraft.app.gui.swing.tree.model.ClassyTreeItem;
@@ -16,7 +17,7 @@ import javax.swing.tree.DefaultTreeModel;
 public class ClassyTreeImplementation implements ClassyTree{
     private ClassyTreeView treeView;
     private DefaultTreeModel treeModel;
-    int j = 1;
+    int i = 1;
 
     @Override
     public ClassyTreeView generateTree(ProjectExplorer projectExplorer) {
@@ -73,40 +74,19 @@ public class ClassyTreeImplementation implements ClassyTree{
     }
 
     private ClassyNode createChild(ClassyNode parent) {
-//        if (parent instanceof ProjectExplorer) {
-//            String projectName = "Project" + i++;
-//            String author = "Author" + i;
-//            String resourceFolderPath = "Path" + i;
-//            return new Project(projectName, author, resourceFolderPath, parent);
-//        }
-//        else if (parent instanceof Project) {
-//            String packageName = "Package" + j++;
-//            String author = "Author" + j;
-//            String resourceFolderPath = "Path" + j;
-//            return new Package(packageName, author, resourceFolderPath, parent);
-//        }
-//        else if (parent instanceof Package) {
-//            String diagramName = "Diagram" + k++;
-//            return new Diagram(diagramName, parent);
-//        }
-//        return null;
         FactoryAbstract factoryAbstract = FactoryUtils.getFactory(parent);
         return factoryAbstract.getClassyNode(parent);
     }
 
     private ClassyNode createPackage(ClassyNode parent) {
         if (parent instanceof Project) {
-            String packageName = "Package" + j++;
+            String packageName = "Package" + i++;
             return new Package(packageName, parent);
         }
         else if (parent instanceof Package) {
-            String packageName = "Package" + j++;
+            String packageName = "Package" + i++;
             return new Package(packageName, parent);
         }
         return null;
-    }
-
-    public int getJ() {
-        return j;
     }
 }
