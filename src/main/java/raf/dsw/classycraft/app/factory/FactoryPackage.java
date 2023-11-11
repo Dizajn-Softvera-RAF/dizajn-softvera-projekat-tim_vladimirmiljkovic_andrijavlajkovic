@@ -11,10 +11,11 @@ public class FactoryPackage extends FactoryAbstract{
     public FactoryPackage(String name, ClassyNode parent) {
         super(name, parent);
     }
+    static int i=1;
 
     @Override
     public ClassyNode createNode(ClassyNode parent) {
-        String packageName = "Package";
+        String packageName = "Package" + i++;
         return new Package(packageName, parent);
     }
 }
