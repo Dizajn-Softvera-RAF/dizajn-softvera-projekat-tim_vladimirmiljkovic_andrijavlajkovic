@@ -1,6 +1,7 @@
 package raf.dsw.classycraft.app.controller;
 
 import raf.dsw.classycraft.app.gui.swing.tree.model.ClassyTreeItem;
+import raf.dsw.classycraft.app.gui.swing.view.EditView;
 import raf.dsw.classycraft.app.gui.swing.view.MainFrame;
 
 import javax.swing.*;
@@ -18,7 +19,19 @@ public class EditProjectAction extends AbstractClassyAction{
     }
 
     public void actionPerformed(ActionEvent e) {
-        ClassyTreeItem selected = (ClassyTreeItem) MainFrame.getInstance().getClassyTree().getSelectedNode();
-        MainFrame.getInstance().getClassyTree().editChild(selected);
+        ClassyTreeItem selected = MainFrame.getInstance().getClassyTree().getSelectedNode();
+        if(selected == null)
+            return;//MG - poruka da mora da se izabere neki element
+        EditView editView = new EditView(null);
+        editView.setVisible(true);
     }
+
+    public void dialogName(String name){
+        ClassyTreeItem selected = MainFrame.getInstance().getClassyTree().getSelectedNode();
+        MainFrame.getInstance().getClassyTree().editChild(selected,name);
+    }
+
+
+
+
 }

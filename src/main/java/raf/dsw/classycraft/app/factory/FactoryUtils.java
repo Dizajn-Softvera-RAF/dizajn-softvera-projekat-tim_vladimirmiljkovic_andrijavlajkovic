@@ -1,8 +1,6 @@
 package raf.dsw.classycraft.app.factory;
 
-import raf.dsw.classycraft.app.gui.swing.tree.ClassyTreeImplementation;
 import raf.dsw.classycraft.app.repository.composite.ClassyNode;
-import raf.dsw.classycraft.app.repository.implementation.Diagram;
 import raf.dsw.classycraft.app.repository.implementation.Package;
 import raf.dsw.classycraft.app.repository.implementation.Project;
 import raf.dsw.classycraft.app.repository.implementation.ProjectExplorer;
