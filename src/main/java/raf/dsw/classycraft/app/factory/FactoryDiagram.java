@@ -2,6 +2,7 @@ package raf.dsw.classycraft.app.factory;
 
 import raf.dsw.classycraft.app.repository.composite.ClassyNode;
 import raf.dsw.classycraft.app.repository.implementation.Diagram;
+import raf.dsw.classycraft.app.repository.implementation.Package;
 
 public class FactoryDiagram extends FactoryAbstract{
     public FactoryDiagram(String name, ClassyNode parent) {
@@ -15,4 +16,6 @@ public class FactoryDiagram extends FactoryAbstract{
         String diagramName = "Diagram" + i++;
         return new Diagram(diagramName, parent);
     }
+
+
 }

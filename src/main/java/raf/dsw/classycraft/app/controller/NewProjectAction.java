@@ -16,7 +16,7 @@ public class NewProjectAction extends AbstractClassyAction{
         putValue(SHORT_DESCRIPTION, "New");
     }
 
-    public void actionPerformed(ActionEvent arg0) {
+    public void actionPerformed(ActionEvent e) {
         ClassyTreeItem selected = (ClassyTreeItem) MainFrame.getInstance().getClassyTree().getSelectedNode();
         MainFrame.getInstance().getClassyTree().addChild(selected);
     }

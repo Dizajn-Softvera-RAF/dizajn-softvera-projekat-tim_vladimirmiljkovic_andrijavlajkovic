@@ -25,7 +25,7 @@ public class MainFrame extends JFrame implements ISubscriber {
     //buduca polja za sve komponente view-a na glavnom prozoru
     private ActionManager actionManager;
     private ClassyTree classyTree;
-
+    private PackageView packageView;
     private MainFrame(){
 
     }
@@ -53,9 +53,11 @@ public class MainFrame extends JFrame implements ISubscriber {
         JTree projectExplorer = classyTree.generateTree(ApplicationFramework.getInstance().getClassyRepository().getRoot());
         JPanel desktop = new JPanel();
 
+        packageView = new PackageView();
+
         JScrollPane scroll=new JScrollPane(projectExplorer);
         scroll.setMinimumSize(new Dimension(200,150));
-        JSplitPane split=new JSplitPane(JSplitPane.HORIZONTAL_SPLIT,scroll,desktop);
+        JSplitPane split=new JSplitPane(JSplitPane.HORIZONTAL_SPLIT,scroll,packageView);
         getContentPane().add(split,BorderLayout.CENTER);
         split.setDividerLocation(250);
         split.setOneTouchExpandable(true);
@@ -95,5 +97,9 @@ public class MainFrame extends JFrame implements ISubscriber {
                     getJOptionPaneMessageType(message.getType())
             );
         }
+        if (notification.getObjectOfNotification() instanceof Package) {
+            packageView.update(notification);
+        }
     }
+
 }
