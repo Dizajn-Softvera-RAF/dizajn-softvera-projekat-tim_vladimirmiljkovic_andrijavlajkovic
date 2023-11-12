@@ -1,7 +1,5 @@
 package raf.dsw.classycraft.app.gui.swing.tree;
 
-import raf.dsw.classycraft.app.core.ApplicationFramework;
-import raf.dsw.classycraft.app.errorHandler.MessageType;
 import raf.dsw.classycraft.app.factory.FactoryAbstract;
 import raf.dsw.classycraft.app.factory.FactoryUtils;
 import raf.dsw.classycraft.app.gui.swing.tree.model.ClassyTreeItem;
@@ -82,10 +80,10 @@ public class ClassyTreeImplementation implements ClassyTree{
     @Override
     public void editChild(ClassyTreeItem parent, String name) {
         if(parent == null){
-            return;
+            return;//MG - nije izabran element koji treba da se edituje
         }
         if(name == null){
-            ApplicationFramework.getInstance().getMessageGenerator().createMessage("Nije moguce ne postaviti ime", MessageType.ERROR);
+            return;//MG - nije moguce ne postaviti ime
         }
         parent.setName(name);
         Refresh();

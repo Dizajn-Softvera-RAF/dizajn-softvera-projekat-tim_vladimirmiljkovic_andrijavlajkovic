@@ -2,7 +2,6 @@ package raf.dsw.classycraft.app.factory;
 
 import raf.dsw.classycraft.app.repository.composite.ClassyNode;
 import raf.dsw.classycraft.app.repository.implementation.Project;
-import raf.dsw.classycraft.app.repository.implementation.ProjectExplorer;
 
 public class FactoryProject extends FactoryAbstract{
     static int i=1;
