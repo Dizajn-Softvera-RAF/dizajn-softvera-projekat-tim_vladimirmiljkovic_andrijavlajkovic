@@ -23,9 +23,12 @@ public class Project extends ClassyNodeComposite {
             }
         }
     }
-
     @Override
     public void removeChild(ClassyNode child) {
         children.remove(child);
+    }
+
+    public void setAuthor(String author) {
+        this.author = author;
     }
 }

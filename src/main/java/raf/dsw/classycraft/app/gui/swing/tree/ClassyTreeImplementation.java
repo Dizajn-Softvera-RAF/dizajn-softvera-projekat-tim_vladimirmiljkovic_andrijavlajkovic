@@ -82,7 +82,20 @@ public class ClassyTreeImplementation implements ClassyTree{
         parent.setName(name);
         Refresh();
     }
-
+    @Override
+    public void editAuthor(ClassyTreeItem parent, String authorName) {
+        if(!(parent.getClassyNode() instanceof Project)){
+            return;//MG - nije moguce menjati ime autora ukoliko nije selektovan project
+        }
+        if(parent == null){
+            return;//MG - nije izabran element koji treba da se edituje
+        }
+        if(authorName == null){
+            return;//MG - nije moguce ne postaviti ime
+        }
+        ((Project) parent.getClassyNode()).setAuthor(authorName);
+        Refresh();
+    }
     private void Refresh(){
         treeView.expandPath(treeView.getSelectionPath());
         SwingUtilities.updateComponentTreeUI(treeView);
