@@ -2,6 +2,7 @@ package raf.dsw.classycraft.app.core;
 
 import lombok.Getter;
 import lombok.Setter;
+import raf.dsw.classycraft.app.errorHandler.MessageGenerator;
 import raf.dsw.classycraft.app.gui.swing.tree.ClassyTree;
 import raf.dsw.classycraft.app.gui.swing.tree.ClassyTreeImplementation;
 import raf.dsw.classycraft.app.gui.swing.tree.view.ClassyTreeView;
@@ -17,6 +18,7 @@ public class ApplicationFramework {
     //buduca polja za model celog projekta
     protected ClassyRepository classyRepository;
 
+    private MessageGenerator messageGenerator;
     private ApplicationFramework(){
 
     }

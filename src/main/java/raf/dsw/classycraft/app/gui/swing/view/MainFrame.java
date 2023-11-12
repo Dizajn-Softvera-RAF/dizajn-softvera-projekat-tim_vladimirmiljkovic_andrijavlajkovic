@@ -101,4 +101,5 @@ public class MainFrame extends JFrame implements ISubscriber {
             packageView.update(notification);
         }
     }
+
 }
