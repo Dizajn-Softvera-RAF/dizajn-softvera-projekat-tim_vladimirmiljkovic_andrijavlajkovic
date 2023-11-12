@@ -8,7 +8,7 @@ public class LoggerFactory {
         CONSOLE, FILE
     }
 
-    public static ISubscriber createLogger(LoggerType type) {
+    public static Logger createLogger(LoggerType type) {
         switch (type) {
             case CONSOLE:
                 return new ConsoleLogger();

@@ -1,7 +1,12 @@
 package raf.dsw.classycraft.app.controller;
 
+import raf.dsw.classycraft.app.core.ApplicationFramework;
+import raf.dsw.classycraft.app.errorHandler.MessageType;
 import raf.dsw.classycraft.app.gui.swing.tree.model.ClassyTreeItem;
 import raf.dsw.classycraft.app.gui.swing.view.MainFrame;
+import raf.dsw.classycraft.app.observer.IPublisher;
+import raf.dsw.classycraft.app.observer.Notification;
+import raf.dsw.classycraft.app.observer.NotificationType;
 import raf.dsw.classycraft.app.repository.composite.ClassyNode;
 import raf.dsw.classycraft.app.repository.composite.ClassyNodeComposite;
 import raf.dsw.classycraft.app.repository.implementation.Package;
@@ -21,9 +26,6 @@ public class RemoveProjectAction extends AbstractClassyAction{
     }
 
     public void actionPerformed(ActionEvent e) {
-        // ClassyTreeItem selected = (ClassyTreeItem) MainFrame.getInstance().getClassyTree().getSelectedNode();
-        //MainFrame.getInstance().getClassyTree().removeChild(selected);
-
         ClassyTreeItem selected = (ClassyTreeItem) MainFrame.getInstance().getClassyTree().getSelectedNode();
         if (selected != null) {
             ClassyNode selectedNode = selected.getClassyNode();
@@ -39,10 +41,12 @@ public class RemoveProjectAction extends AbstractClassyAction{
             if ((selectedNode instanceof Package && selectedNode.equals(MainFrame.getInstance().getPackageView().getPaket())) ||
                     (selectedNode instanceof Project && MainFrame.getInstance().getPackageView().getPaket() != null &&
                             MainFrame.getInstance().getPackageView().getPaket().getParent().equals(selectedNode))) {
-                // Resetuj PackageView
+                // Reset PackageView
                 MainFrame.getInstance().getPackageView().resetView();
             }
         }
+
     }
+
 
 }
