@@ -46,12 +46,12 @@ public class EditProjectAction extends AbstractClassyAction{
         ClassyNode node = selected.getClassyNode();
         node.setName(name);
 
-        if (node instanceof Diagram) {
-            ((IPublisher) node).notifySubscribers(new Notification(node, NotificationType.DIAGRAM_NAME_CHANGED));
-        }
-        else if (node instanceof Project) {
-            ((IPublisher) node).notifySubscribers(new Notification(node, NotificationType.PROJECT_NAME_CHANGED));
-        }
+//        if (node instanceof Diagram) {
+//            ((IPublisher) node).notifySubscribers(new Notification(node, NotificationType.DIAGRAM_NAME_CHANGED));
+//        }
+//        else if (node instanceof Project) {
+//            ((IPublisher) node).notifySubscribers(new Notification(node, NotificationType.PROJECT_NAME_CHANGED));
+//        }
         MainFrame.getInstance().getClassyTree().editChild(selected,name);
     }
 

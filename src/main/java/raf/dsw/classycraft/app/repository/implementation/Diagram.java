@@ -3,6 +3,7 @@ package raf.dsw.classycraft.app.repository.implementation;
 import raf.dsw.classycraft.app.observer.IPublisher;
 import raf.dsw.classycraft.app.observer.ISubscriber;
 import raf.dsw.classycraft.app.observer.Notification;
+import raf.dsw.classycraft.app.observer.NotificationType;
 import raf.dsw.classycraft.app.repository.composite.ClassyNode;
 
 import java.util.ArrayList;
@@ -33,4 +34,9 @@ public class Diagram extends ClassyNode implements IPublisher {
     }
 
 
+    @Override
+    public void setName(String name) {
+        super.setName(name);
+        notifySubscribers(new Notification(this, NotificationType.DIAGRAM_NAME_CHANGED));
+    }
 }

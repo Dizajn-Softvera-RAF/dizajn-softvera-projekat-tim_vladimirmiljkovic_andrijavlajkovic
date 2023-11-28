@@ -38,12 +38,12 @@ public class RemoveProjectAction extends AbstractClassyAction{
             // uklanjanje sa jtree-a
             MainFrame.getInstance().getClassyTree().removeChild(selected);
 
-            if ((selectedNode instanceof Package && selectedNode.equals(MainFrame.getInstance().getPackageView().getPaket())) ||
-                    (selectedNode instanceof Project && MainFrame.getInstance().getPackageView().getPaket() != null &&
-                            MainFrame.getInstance().getPackageView().getPaket().getParent().equals(selectedNode))) {
-                // Reset PackageView
-                MainFrame.getInstance().getPackageView().resetView();
-            }
+//            if ((selectedNode instanceof Package && selectedNode.equals(MainFrame.getInstance().getPackageView().getPaket())) ||
+//                    (selectedNode instanceof Project && MainFrame.getInstance().getPackageView().getPaket() != null &&
+//                            MainFrame.getInstance().getPackageView().getPaket().getParent().equals(selectedNode))) {
+//                // Reset PackageView
+//                MainFrame.getInstance().getPackageView().resetView();
+//            }
         }
 
     }
