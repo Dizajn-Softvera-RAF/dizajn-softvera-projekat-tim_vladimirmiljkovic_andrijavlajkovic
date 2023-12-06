@@ -1,0 +1,1 @@
+[ERROR][28.11.2023. 20:31] Izabrali ste element koji ne moze da ima dete

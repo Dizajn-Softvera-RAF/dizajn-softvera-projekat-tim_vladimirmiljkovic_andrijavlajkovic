@@ -39,6 +39,7 @@ public class Project extends ClassyNodeComposite implements IPublisher {
     @Override
     public void removeChild(ClassyNode child) {
         children.remove(child);
+        notifySubscribers(new Notification(child, NotificationType.PACKAGE_REMOVED));
     }
 
     @Override
@@ -58,5 +59,11 @@ public class Project extends ClassyNodeComposite implements IPublisher {
         for (ISubscriber subscriber : subscribers) {
             subscriber.update(notification);
         }
+    }
+
+    @Override
+    public void setName(String name) {
+        super.setName(name);
+        notifySubscribers(new Notification(this,NotificationType.PROJECT_NAME_CHANGED));
     }
 }
