@@ -22,28 +22,58 @@ public class ICPainter extends ElementPainter{
     }
 
     private void drawElement(Graphics2D g, Interclass element) {
-        g.setColor(element.getColor());
+        if (element.getPosition() == null) {
+            System.out.println("Position je null");
+        }
+
+        Color fillColor;
+        if (element instanceof Klasa) {
+            fillColor = Color.BLUE;
+
+        } else if (element instanceof Interfejs) {
+            fillColor = Color.GREEN;
+
+        } else {
+            fillColor = Color.ORANGE;
+
+        }
+        if (element.getSize() == null) {
+            System.out.println("Size je null");
+        }
+
+        g.setColor(fillColor);
         Point position = element.getPosition();
-        Dimension size = element.getSize();
-        g.fillRect(position.x, position.y, size.width, size.height);
-        drawCenteredString(g, element.getName(), position, size);
+        g.fillRect(position.x, position.y, element.getSize().width, element.getSize().height);
+
+
+        g.setColor(Color.BLACK);
+        g.drawRect(position.x, position.y, element.getSize().width, element.getSize().height);
+
+        drawNazivSaLinijom(g, element.getName(), position, element.getSize());
     }
 
-    private void drawCenteredString(Graphics2D g, String text, Point position, Dimension size) {
+    private void drawNazivSaLinijom(Graphics2D g, String text, Point position, Dimension size) {
         Font font = new Font("Arial", Font.PLAIN, 12);
         g.setFont(font);
         FontMetrics fm = g.getFontMetrics();
-        int x = position.x + (size.width - fm.stringWidth(text)) / 2;
-        int y = position.y + ((size.height - fm.getHeight()) / 2) + fm.getAscent();
+
+        int textX = position.x + (size.width - fm.stringWidth(text)) / 2;
+        int textY = position.y + fm.getAscent();
         g.setColor(Color.BLACK);
-        g.drawString(text, x, y);
+        g.drawString(text, textX, textY);
+
+        int lineY = textY + fm.getDescent();
+        g.drawLine(position.x, lineY, position.x + size.width, lineY);
     }
 
     @Override
     public boolean elementAt(DiagramElement element, Point pos) {
-
         if (element instanceof Klasa) {
             Klasa klasa = (Klasa) element;
+//            if (klasa == null || klasa.getPosition() == null || klasa.getSize() == null) {
+//                System.out.println("Element, position ili size su null");
+//                return false;
+//            }
             Point position = klasa.getPosition();
             Dimension size = klasa.getSize();
             Rectangle elementBounds = new Rectangle(position.x, position.y, size.width, size.height);

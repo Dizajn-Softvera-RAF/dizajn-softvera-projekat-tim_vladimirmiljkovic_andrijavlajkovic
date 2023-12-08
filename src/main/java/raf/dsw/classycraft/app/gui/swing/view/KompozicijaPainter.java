@@ -1,4 +1,4 @@
 package raf.dsw.classycraft.app.gui.swing.view;
 
-public class VezaPainter {
+public class KompozicijaPainter {
 }

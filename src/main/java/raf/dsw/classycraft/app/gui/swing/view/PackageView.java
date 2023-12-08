@@ -28,8 +28,6 @@ public class PackageView extends JPanel implements ISubscriber {
     private Map<Diagram, ElementCounters> countersMap = new HashMap<>();
     public PackageView() {
         initialise();
-
-
     }
 
     public void initialise(){
@@ -173,9 +171,6 @@ public class PackageView extends JPanel implements ISubscriber {
     public void startDodavanjeVezeState(){
         this.stateManager.setDodavanjeVezeState();
     }
-    public void startDodavanjeSadrzajaState(){
-        this.stateManager.setDodavanjeSadrzajaState();
-    }
     public void startBrisanjeState(){
         this.stateManager.setBrisanjeState();
     }
@@ -185,6 +180,13 @@ public class PackageView extends JPanel implements ISubscriber {
 
     public void misKliknut(int x, int y, DiagramView diagramView) {
         this.getStateManager().getCurrent().misKliknut(x,y,diagramView);
+    }
+    public void misPovucen(int x, int y, DiagramView diagramView) {
+        this.stateManager.getCurrent().misPovucen(x, y, diagramView);
+    }
+
+    public void misOtpusten(int x, int y, DiagramView diagramView) {
+        this.stateManager.getCurrent().misOtpusten(x, y, diagramView);
     }
 
 

@@ -24,7 +24,6 @@ public class ClassyBar extends JToolBar {
 
         btnAddICO.addActionListener(e -> packageView.startDodavanjeICOState());
         btnAddVeza.addActionListener(e -> packageView.startDodavanjeVezeState());
-        btnAddSadrzaj.addActionListener(e -> packageView.startDodavanjeSadrzajaState());
         btnDelete.addActionListener(e -> packageView.startBrisanjeState());
         btnSelect.addActionListener(e -> packageView.startSelekcijaState());
 

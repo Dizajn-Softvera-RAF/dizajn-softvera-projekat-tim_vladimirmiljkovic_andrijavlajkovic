@@ -32,6 +32,7 @@ public class Diagram extends ClassyNodeComposite implements IPublisher {
     @Override
     public void removeChild(ClassyNode child) {
         children.remove(child);
+        notifySubscribers(new Notification(child,NotificationType.REMOVE));
     }
 
     @Override

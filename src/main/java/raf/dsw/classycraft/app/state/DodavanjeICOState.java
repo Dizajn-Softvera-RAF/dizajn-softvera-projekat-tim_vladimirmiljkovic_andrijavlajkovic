@@ -1,11 +1,11 @@
 package raf.dsw.classycraft.app.state;
 
+import raf.dsw.classycraft.app.core.ApplicationFramework;
+import raf.dsw.classycraft.app.errorHandler.MessageType;
 import raf.dsw.classycraft.app.gui.swing.view.DiagramView;
+import raf.dsw.classycraft.app.gui.swing.view.ElementPainter;
 import raf.dsw.classycraft.app.gui.swing.view.ICPainter;
-import raf.dsw.classycraft.app.model.Enuum;
-import raf.dsw.classycraft.app.model.Interclass;
-import raf.dsw.classycraft.app.model.Interfejs;
-import raf.dsw.classycraft.app.model.Klasa;
+import raf.dsw.classycraft.app.model.*;
 
 import javax.swing.*;
 import java.awt.*;
@@ -40,24 +40,28 @@ public class DodavanjeICOState implements State{
         }
     }
 
+    @Override
+    public void misPovucen(int x, int y, DiagramView diagramView) {
+
+    }
+
+    @Override
+    public void misOtpusten(int x, int y, DiagramView diagramView) {
+
+    }
+
     private void createAndAddElement(String elementType, int x, int y, DiagramView diagramView) {
         String elementName = diagramView.getPackageView().generateElementName(diagramView.getDiagram(), elementType);
-        Color color = determineColor(elementType);
-        Interclass element;
+        Dimension size = odrediVelicinuNaOsnovuTipa(elementType);
 
-        switch (elementType) {
-            case "Klasa":
-                element = new Klasa(elementName, diagramView.getDiagram(), 1, color, new Point(x, y), new Dimension(100, 50));
-                break;
-            case "Enum":
-                element = new Enuum(elementName, diagramView.getDiagram(), 1, color, new Point(x, y), new Dimension(100, 50));
-                break;
-            case "Interfejs":
-                element = new Interfejs(elementName, diagramView.getDiagram(), 1, color, new Point(x, y), new Dimension(100, 50));
-                break;
-            default:
-                throw new IllegalArgumentException("Nepoznat tip elementa: " + elementType);
+        if (intersectsWithOld(new Point(x, y), size, diagramView)) {
+            ApplicationFramework.getInstance().getMessageGenerator().createMessage("Novi element ne sme da se preklapa sa postojecim", MessageType.WARNING);
+            return;
         }
+
+        Interclass element = kreirajElement(elementType, elementName, diagramView);
+        element.setPosition(new Point(x, y));
+        element.setSize(size);
 
         ICPainter elementPainter = new ICPainter(element);
         diagramView.getPainters().add(elementPainter);
@@ -65,12 +69,42 @@ public class DodavanjeICOState implements State{
         diagramView.repaint();
     }
 
-    private Color determineColor(String type) {
-        switch (type) {
-            case "Klasa": return Color.BLUE; // Plava
-            case "Enum": return Color.ORANGE; // Braon
-            case "Interfejs": return Color.GREEN; // Zelena
-            default: return Color.BLACK;
+    private Dimension odrediVelicinuNaOsnovuTipa(String elementType) {
+        switch (elementType) {
+            case "Klasa":
+                return new Dimension(75, 100);
+            case "Enum":
+                return new Dimension(75, 50);
+            case "Interfejs":
+                return new Dimension(75, 100);
+            default:
+                throw new IllegalArgumentException("Nepoznat tip elementa: " + elementType);
         }
     }
+
+    private Interclass kreirajElement(String elementType, String elementName, DiagramView diagramView) {
+        switch (elementType) {
+            case "Klasa":
+                return new Klasa(elementName, diagramView.getDiagram());
+            case "Enum":
+                return new Enuum(elementName, diagramView.getDiagram());
+            case "Interfejs":
+                return new Interfejs(elementName, diagramView.getDiagram());
+            default:
+                throw new IllegalArgumentException("Nepoznat tip elementa: " + elementType);
+        }
+    }
+
+    private boolean intersectsWithOld(Point newPos, Dimension newSize, DiagramView diagramView) {
+        for (ElementPainter painter : diagramView.getPainters()) {
+            Interclass element = (Interclass) painter.getElement();
+            Rectangle oldBounds = new Rectangle(element.getPosition(), element.getSize());
+            Rectangle newBounds = new Rectangle(newPos, newSize);
+            if (oldBounds.intersects(newBounds)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
 }

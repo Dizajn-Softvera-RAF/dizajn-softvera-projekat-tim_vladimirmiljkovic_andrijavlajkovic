@@ -1,5 +1,6 @@
 package raf.dsw.classycraft.app.gui.swing.view;
 
+import com.sun.tools.javac.Main;
 import lombok.Getter;
 import lombok.Setter;
 import raf.dsw.classycraft.app.observer.ISubscriber;
@@ -48,11 +49,13 @@ public class DiagramView extends JPanel implements ISubscriber {
         @Override
         public void mouseReleased(MouseEvent e) {
             super.mouseReleased(e);
+            MainFrame.getInstance().getPackageView().misOtpusten(e.getX(),e.getY(),diagramView);
         }
 
         @Override
         public void mouseDragged(MouseEvent e) {
             super.mouseDragged(e);
+            MainFrame.getInstance().getPackageView().misPovucen(e.getX(), e.getY(), diagramView);
         }
     }
     @Override
@@ -60,8 +63,12 @@ public class DiagramView extends JPanel implements ISubscriber {
         super.paintComponent(g);
         Graphics2D g2 = (Graphics2D) g;
         for(ElementPainter p: painters){
-            System.out.println("Drawing element: " + p.getElement().getName());
             p.paint(g2,p.getElement());
         }
+        for (ElementPainter p : selectedModel) {
+            SelectedElementPainter selectedPainter = new SelectedElementPainter(p.getElement());
+            selectedPainter.paint(g2, p.getElement());
+        }
+
     }
 }

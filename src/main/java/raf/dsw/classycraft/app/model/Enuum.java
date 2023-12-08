@@ -8,7 +8,7 @@ import java.awt.*;
 @Getter
 @Setter
 public class Enuum extends Interclass{
-    public Enuum(String name, ClassyNode parent, int stroke, Color color, Point position, Dimension size) {
-        super(name, parent, stroke, color, position, size);
+    public Enuum(String name, ClassyNode parent) {
+        super(name, parent);
     }
 }

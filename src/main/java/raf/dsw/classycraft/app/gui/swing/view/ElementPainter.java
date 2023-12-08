@@ -17,4 +17,6 @@ public abstract class ElementPainter {
     public abstract void paint(Graphics2D g, DiagramElement element);
 
     public abstract boolean elementAt(DiagramElement element, Point pos);
+
+
 }

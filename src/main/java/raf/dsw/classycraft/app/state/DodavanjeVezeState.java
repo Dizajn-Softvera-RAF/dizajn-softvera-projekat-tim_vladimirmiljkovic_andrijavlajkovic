@@ -7,4 +7,14 @@ public class DodavanjeVezeState implements State{
     public void misKliknut(int x, int y, DiagramView diagramView) {
 
     }
+
+    @Override
+    public void misPovucen(int x, int y, DiagramView diagramView) {
+
+    }
+
+    @Override
+    public void misOtpusten(int x, int y, DiagramView diagramView) {
+
+    }
 }

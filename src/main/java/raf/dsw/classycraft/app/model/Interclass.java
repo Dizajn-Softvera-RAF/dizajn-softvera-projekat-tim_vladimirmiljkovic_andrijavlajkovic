@@ -14,10 +14,8 @@ public class Interclass extends DiagramElement{
     private Dimension size;
     private List<ClassContent> classContents;
 
-    public Interclass(String name, ClassyNode parent, int stroke, Color color, Point position, Dimension size) {
-        super(name, parent, stroke, color);
-        this.position=position;
-        this.size=size;
+    public Interclass(String name, ClassyNode parent) {
+        super(name, parent);
     }
 }
 

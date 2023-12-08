@@ -1,4 +1,4 @@
 package raf.dsw.classycraft.app.gui.swing.view;
 
-public class APainter {
+public class AgregacijaPainter {
 }
