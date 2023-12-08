@@ -2,16 +2,20 @@ package raf.dsw.classycraft.app.gui.swing.view;
 
 import lombok.Getter;
 import lombok.Setter;
+import raf.dsw.classycraft.app.model.ElementCounters;
 import raf.dsw.classycraft.app.observer.ISubscriber;
 import raf.dsw.classycraft.app.observer.Notification;
-import raf.dsw.classycraft.app.observer.NotificationType;
 import raf.dsw.classycraft.app.repository.composite.ClassyNode;
 import raf.dsw.classycraft.app.repository.implementation.Diagram;
 import raf.dsw.classycraft.app.repository.implementation.Package;
 import raf.dsw.classycraft.app.repository.implementation.Project;
+import raf.dsw.classycraft.app.state.StateManager;
 
 import javax.swing.*;
 import java.awt.*;
+import java.util.HashMap;
+import java.util.Map;
+
 @Getter
 @Setter
 public class PackageView extends JPanel implements ISubscriber {
@@ -19,7 +23,9 @@ public class PackageView extends JPanel implements ISubscriber {
     private JLabel authorName;
     private JLabel projectName;
     private Package paket;
-
+    private StateManager stateManager;
+    private ClassyBar classyBar;
+    private Map<Diagram, ElementCounters> countersMap = new HashMap<>();
     public PackageView() {
         initialise();
 
@@ -28,7 +34,7 @@ public class PackageView extends JPanel implements ISubscriber {
 
     public void initialise(){
         setLayout(new BorderLayout());
-
+        this.stateManager = new StateManager();
         authorName=new JLabel("");
         projectName= new JLabel("");
 
@@ -41,6 +47,8 @@ public class PackageView extends JPanel implements ISubscriber {
 
         tabbedPane = new JTabbedPane();
         add(tabbedPane, BorderLayout.CENTER);
+        classyBar = new ClassyBar(this);
+        add(classyBar, BorderLayout.EAST);
         tabbedPane.setVisible(false);
         authorName.setVisible(false);
         projectName.setVisible(false);
@@ -94,7 +102,8 @@ public class PackageView extends JPanel implements ISubscriber {
     }
 
     private void addTabForDiagram(Diagram diagram) {
-        DiagramView view = new DiagramView(diagram);
+        DiagramView view = new DiagramView(diagram, this);
+        diagram.addSubscriber(view);  // Pretplata DiagramView-a na Diagram
         tabbedPane.addTab(diagram.getName(), view);
     }
     public void subscribeToPackage(Package pkg) {
@@ -125,6 +134,7 @@ public class PackageView extends JPanel implements ISubscriber {
             if (component instanceof DiagramView) {
                 DiagramView view = (DiagramView) component;
                 if (view.getDiagram().equals(diagram)) {
+                    diagram.removeSubscriber(view);
                     tabbedPane.remove(i);
                     break;
                 }
@@ -157,4 +167,36 @@ public class PackageView extends JPanel implements ISubscriber {
         }
     }
 
+    public void startDodavanjeICOState(){
+        this.stateManager.setDodavanjeICOState();
+    }
+    public void startDodavanjeVezeState(){
+        this.stateManager.setDodavanjeVezeState();
+    }
+    public void startDodavanjeSadrzajaState(){
+        this.stateManager.setDodavanjeSadrzajaState();
+    }
+    public void startBrisanjeState(){
+        this.stateManager.setBrisanjeState();
+    }
+    public void startSelekcijaState(){
+        this.stateManager.setSelekcijaState();
+    }
+
+    public void misKliknut(int x, int y, DiagramView diagramView) {
+        this.getStateManager().getCurrent().misKliknut(x,y,diagramView);
+    }
+
+
+
+    public String generateElementName(Diagram diagram, String type) {
+        ElementCounters counters = countersMap.computeIfAbsent(diagram, k -> new ElementCounters());
+
+        switch (type) {
+            case "Klasa": return "Klasa" + counters.getNextClassCount();
+            case "Enum": return "Enum" + counters.getNextEnumCount();
+            case "Interfejs": return "Interfejs" + counters.getNextInterfaceCount();
+            default: return "Element";
+        }
+    }
 }
