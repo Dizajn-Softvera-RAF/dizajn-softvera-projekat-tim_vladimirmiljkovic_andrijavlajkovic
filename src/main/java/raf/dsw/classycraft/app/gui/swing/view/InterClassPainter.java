@@ -4,8 +4,8 @@ import raf.dsw.classycraft.app.model.*;
 
 import java.awt.*;
 
-public class ICPainter extends ElementPainter{
-    public ICPainter(DiagramElement element) {
+public class InterClassPainter extends ElementPainter{
+    public InterClassPainter(DiagramElement element) {
         super(element);
 
     }
@@ -28,7 +28,7 @@ public class ICPainter extends ElementPainter{
 
         Color fillColor;
         if (element instanceof Klasa) {
-            fillColor = Color.BLUE;
+            fillColor = Color.CYAN;
 
         } else if (element instanceof Interfejs) {
             fillColor = Color.GREEN;

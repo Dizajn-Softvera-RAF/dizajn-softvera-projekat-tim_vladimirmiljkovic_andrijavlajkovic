@@ -11,10 +11,11 @@ public class Connection extends DiagramElement{
     private Interclass fromInterclass;
     private Interclass toInterclass;
 
-    public Connection(String name, ClassyNode parent, Interclass fromInterclass) {
+
+    public Connection(String name, ClassyNode parent, Interclass fromInterclass, Interclass toInterclass) {
         super(name, parent);
         this.fromInterclass=fromInterclass;
-
+        this.toInterclass=toInterclass;
 
 
     }

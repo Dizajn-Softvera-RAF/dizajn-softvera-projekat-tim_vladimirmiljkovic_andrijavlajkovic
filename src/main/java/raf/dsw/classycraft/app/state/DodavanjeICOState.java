@@ -4,7 +4,7 @@ import raf.dsw.classycraft.app.core.ApplicationFramework;
 import raf.dsw.classycraft.app.errorHandler.MessageType;
 import raf.dsw.classycraft.app.gui.swing.view.DiagramView;
 import raf.dsw.classycraft.app.gui.swing.view.ElementPainter;
-import raf.dsw.classycraft.app.gui.swing.view.ICPainter;
+import raf.dsw.classycraft.app.gui.swing.view.InterClassPainter;
 import raf.dsw.classycraft.app.model.*;
 
 import javax.swing.*;
@@ -12,14 +12,6 @@ import java.awt.*;
 
 public class DodavanjeICOState implements State{
 
-
-//    @Override
-//    public void misKliknut(int x, int y, DiagramView diagramView) {
-//       Klasa klasa=new Klasa("KLASA",diagramView.getDiagram(),1,Color.BLUE,new Point(x,y),new Dimension(100,50));
-//       ICPainter klasaPainter = new ICPainter(klasa);
-//       diagramView.getPainters().add(klasaPainter);
-//       diagramView.getDiagram().addChild(klasa);
-//    }
     @Override
     public void misKliknut(int x, int y, DiagramView diagramView) {
         String[] options = {"Klasa", "Enum", "Interfejs"};
@@ -63,7 +55,7 @@ public class DodavanjeICOState implements State{
         element.setPosition(new Point(x, y));
         element.setSize(size);
 
-        ICPainter elementPainter = new ICPainter(element);
+        InterClassPainter elementPainter = new InterClassPainter(element);
         diagramView.getPainters().add(elementPainter);
         diagramView.getDiagram().addChild(element);
         diagramView.repaint();
@@ -96,15 +88,19 @@ public class DodavanjeICOState implements State{
     }
 
     private boolean intersectsWithOld(Point newPos, Dimension newSize, DiagramView diagramView) {
+        Rectangle newBounds = new Rectangle(newPos, newSize);
         for (ElementPainter painter : diagramView.getPainters()) {
-            Interclass element = (Interclass) painter.getElement();
-            Rectangle oldBounds = new Rectangle(element.getPosition(), element.getSize());
-            Rectangle newBounds = new Rectangle(newPos, newSize);
-            if (oldBounds.intersects(newBounds)) {
-                return true;
+            DiagramElement element = painter.getElement();
+
+            if (element instanceof Interclass) {
+                Rectangle elementBounds = new Rectangle(((Interclass) element).getPosition(), ((Interclass) element).getSize());
+                if (elementBounds.intersects(newBounds)) {
+                    return true;
+                }
             }
         }
         return false;
     }
+
 
 }

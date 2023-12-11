@@ -182,11 +182,11 @@ public class PackageView extends JPanel implements ISubscriber {
         this.getStateManager().getCurrent().misKliknut(x,y,diagramView);
     }
     public void misPovucen(int x, int y, DiagramView diagramView) {
-        this.stateManager.getCurrent().misPovucen(x, y, diagramView);
+        this.getStateManager().getCurrent().misPovucen(x, y, diagramView);
     }
 
     public void misOtpusten(int x, int y, DiagramView diagramView) {
-        this.stateManager.getCurrent().misOtpusten(x, y, diagramView);
+        this.getStateManager().getCurrent().misOtpusten(x, y, diagramView);
     }
 
 
@@ -195,9 +195,13 @@ public class PackageView extends JPanel implements ISubscriber {
         ElementCounters counters = countersMap.computeIfAbsent(diagram, k -> new ElementCounters());
 
         switch (type) {
-            case "Klasa": return "Klasa" + counters.getNextClassCount();
-            case "Enum": return "Enum" + counters.getNextEnumCount();
-            case "Interfejs": return "Interfejs" + counters.getNextInterfaceCount();
+            case "Klasa": return "Klasa" + counters.getNextKlasaCount();
+            case "Enum": return "Enum" + counters.getNextEnuumCount();
+            case "Interfejs": return "Interfejs" + counters.getNextInterfejsCount();
+            case "Agregacija": return "Agregacija" + counters.getNextAgregacijaCount();
+            case "Kompozicija": return "Kompozicija" + counters.getNextKompozicijaCount();
+            case "Generalizacija": return "Generalizacija" + counters.getNextGeneralizacijaCount();
+            case "Zavisnost": return "Zavisnost" + counters.getNextZavisnostCount();
             default: return "Element";
         }
     }

@@ -21,6 +21,7 @@ public class DiagramView extends JPanel implements ISubscriber {
     private PackageView packageView;
     private List<ElementPainter> painters = new ArrayList<>();
     private List<ElementPainter> selectedModel = new ArrayList<>();
+
     public DiagramView(Diagram diagram,PackageView packageView) {
         this.diagram = diagram;
         this.packageView = packageView;
@@ -71,4 +72,5 @@ public class DiagramView extends JPanel implements ISubscriber {
         }
 
     }
+
 }

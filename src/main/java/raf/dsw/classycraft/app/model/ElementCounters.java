@@ -1,25 +1,27 @@
 package raf.dsw.classycraft.app.model;
 
 public class ElementCounters {
-    private int classCount = 1;
-    private int enumCount = 1;
-    private int interfaceCount = 1;
+    private int klasaCount = 1;
+    private int enuumCount = 1;
+    private int interfejsCount = 1;
+    private int agregacijaCount = 1;
+    private int kompozicijaCount = 1;
+    private int generalizacijaCount= 1;
+    private int zavisnostCount= 1;
 
-    public int getNextClassCount() {
-        return classCount++;
+    public int getNextKlasaCount() {
+        return klasaCount++;
     }
-
-    public int getNextEnumCount() {
-        return enumCount++;
+    public int getNextEnuumCount() {
+        return enuumCount++;
     }
-
-    public int getNextInterfaceCount() {
-        return interfaceCount++;
+    public int getNextInterfejsCount() {
+        return interfejsCount++;
     }
-
-    public void reset() {
-        classCount = 1;
-        enumCount = 1;
-        interfaceCount = 1;
+    public int getNextAgregacijaCount(){
+        return agregacijaCount++;
     }
+    public int getNextKompozicijaCount(){return kompozicijaCount++;}
+    public int getNextGeneralizacijaCount(){return generalizacijaCount++;}
+    public int getNextZavisnostCount(){return zavisnostCount++;}
 }
