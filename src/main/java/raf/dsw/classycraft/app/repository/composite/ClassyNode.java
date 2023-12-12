@@ -3,6 +3,7 @@ package raf.dsw.classycraft.app.repository.composite;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
+import raf.dsw.classycraft.app.repository.implementation.Diagram;
 
 import java.util.Objects;
 
@@ -28,7 +29,13 @@ public abstract class ClassyNode {
         }
         return false;
     }
-
+    public Diagram findParentDiagram() {
+        ClassyNode current = this;
+        while (current != null && !(current instanceof Diagram)) {
+            current = current.getParent();
+        }
+        return (Diagram) current;
+    }
     @Override
     public int hashCode() {
         return Objects.hash(name);

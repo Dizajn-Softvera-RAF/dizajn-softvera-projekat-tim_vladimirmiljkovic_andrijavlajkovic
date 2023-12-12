@@ -50,13 +50,8 @@ public class SelekcijaState implements State{
         int height = Math.abs(startDragPoint.y - y);
 
         selectionRectangle = new Rectangle(minX, minY, width, height);
-        // Uklanjanje svih prethodnih LassoPainter objekata
         diagramView.getPainters().removeIf(p -> p instanceof LassoPainter);
-
-        // Dodavanje novog LassoPaintera
         diagramView.getPainters().add(new LassoPainter(selectionRectangle));
-
-        // Ažuriranje selekcije na osnovu trenutnog pravougaonika
         lassoSelekcija(diagramView, false);
         diagramView.repaint();
     }

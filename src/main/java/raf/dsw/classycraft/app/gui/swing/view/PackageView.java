@@ -177,6 +177,9 @@ public class PackageView extends JPanel implements ISubscriber {
     public void startSelekcijaState(){
         this.stateManager.setSelekcijaState();
     }
+    public void startPomeranjeState(){
+        this.stateManager.setPomeranjeState();
+    }
 
     public void misKliknut(int x, int y, DiagramView diagramView) {
         this.getStateManager().getCurrent().misKliknut(x,y,diagramView);

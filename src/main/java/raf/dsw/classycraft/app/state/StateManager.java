@@ -6,6 +6,8 @@ public class StateManager {
     private DodavanjeVezeState dodavanjeVezeState;
     private BrisanjeState brisanjeState;
     private SelekcijaState selekcijaState;
+    private PomeranjeState pomeranjeState;
+
 
     public StateManager() {
         initStates();
@@ -16,6 +18,7 @@ public class StateManager {
         dodavanjeVezeState = new DodavanjeVezeState();
         brisanjeState = new BrisanjeState();
         selekcijaState= new SelekcijaState();
+        pomeranjeState = new PomeranjeState();
         currentState = selekcijaState;
     }
 
@@ -34,6 +37,7 @@ public class StateManager {
     public void setBrisanjeState(){
         currentState = brisanjeState;
     }
-    public void setSelekcijaState(){currentState= selekcijaState;}
+    public void setSelekcijaState(){currentState = selekcijaState;}
+    public void setPomeranjeState(){currentState = pomeranjeState; }
 
 }
