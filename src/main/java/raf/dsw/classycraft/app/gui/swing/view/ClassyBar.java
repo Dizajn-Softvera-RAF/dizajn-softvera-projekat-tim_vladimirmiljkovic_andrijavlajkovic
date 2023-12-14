@@ -28,7 +28,7 @@ public class ClassyBar extends JToolBar {
         ImageIcon icon6 = new ImageIcon("src/main/resources/images/moveicon.png");
         ImageIcon icon7 = new ImageIcon("src/main/resources/images/zoomicon.png");
         ImageIcon icon8 = new ImageIcon("src/main/resources/images/duplicateicon.png");
-        btnAddICO = new JButton("New Attribute",icon1);
+        btnAddICO = new JButton("New Object",icon1);
         btnAddVeza = new JButton("New Connection",icon2);
         btnAddSadrzaj = new JButton("Edit Content",icon3);
         btnDelete = new JButton("Delete",icon4);

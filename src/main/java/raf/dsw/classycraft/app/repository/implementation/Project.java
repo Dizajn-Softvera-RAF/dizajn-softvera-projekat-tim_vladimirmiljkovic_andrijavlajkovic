@@ -66,4 +66,5 @@ public class Project extends ClassyNodeComposite implements IPublisher {
         super.setName(name);
         notifySubscribers(new Notification(this,NotificationType.PROJECT_NAME_CHANGED));
     }
+
 }

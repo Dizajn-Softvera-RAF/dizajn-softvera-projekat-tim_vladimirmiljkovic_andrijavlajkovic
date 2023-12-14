@@ -13,7 +13,6 @@ public class ActionManager {
     private NewPackageAction newPackageAction;
     private RemoveProjectAction removeProjectAction;
     private EditProjectAction editProjectAction;
-    private EditAuthorAction editAuthorAction;
     public ActionManager(){
         initialiseActions();
     }
@@ -25,7 +24,6 @@ public class ActionManager {
         newPackageAction = new NewPackageAction();
         removeProjectAction = new RemoveProjectAction();
         editProjectAction = new EditProjectAction();
-        editAuthorAction = new EditAuthorAction();
 
     }
 
