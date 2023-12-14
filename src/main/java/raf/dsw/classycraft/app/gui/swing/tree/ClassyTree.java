@@ -10,6 +10,7 @@ public interface ClassyTree {
     void removeChild(ClassyTreeItem parent);
     void editChild(ClassyTreeItem parent, String name);
     void addPackage(ClassyTreeItem parent);
+    void editAuthor(ClassyTreeItem parent, String authorName);
 
     ClassyTreeItem getSelectedNode();
 
