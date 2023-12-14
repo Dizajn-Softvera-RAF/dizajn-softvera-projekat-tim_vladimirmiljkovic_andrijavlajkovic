@@ -1,19 +1,38 @@
 package raf.dsw.classycraft.app.repository.implementation;
 
+import lombok.Getter;
+import lombok.Setter;
 import raf.dsw.classycraft.app.observer.IPublisher;
 import raf.dsw.classycraft.app.observer.ISubscriber;
 import raf.dsw.classycraft.app.observer.Notification;
 import raf.dsw.classycraft.app.observer.NotificationType;
 import raf.dsw.classycraft.app.repository.composite.ClassyNode;
+import raf.dsw.classycraft.app.repository.composite.ClassyNodeComposite;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class Diagram extends ClassyNode implements IPublisher {
+@Getter
+@Setter
+public class Diagram extends ClassyNodeComposite implements IPublisher {
     private List<ISubscriber> subscribers = new ArrayList<>();
+
+
 
     public Diagram(String name, ClassyNode parent) {
         super(name, parent);
+    }
+
+    @Override
+    public void addChild(ClassyNode child) {
+        children.add(child);
+        notifySubscribers(new Notification(child,NotificationType.ADD));
+    }
+
+    @Override
+    public void removeChild(ClassyNode child) {
+        children.remove(child);
+        notifySubscribers(new Notification(child,NotificationType.REMOVE));
     }
 
     @Override
