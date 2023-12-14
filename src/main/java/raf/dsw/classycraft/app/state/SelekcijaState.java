@@ -68,6 +68,7 @@ public class SelekcijaState implements State{
         diagramView.repaint();
     }
 
+
     private void lassoSelekcija(DiagramView diagramView, boolean finalizeSelection) {
         for (ElementPainter painter : diagramView.getPainters()) {
             DiagramElement element = painter.getElement();

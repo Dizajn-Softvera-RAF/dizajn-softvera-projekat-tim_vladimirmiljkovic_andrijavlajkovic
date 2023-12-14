@@ -5,9 +5,7 @@ import raf.dsw.classycraft.app.gui.swing.view.ElementPainter;
 import raf.dsw.classycraft.app.model.DiagramElement;
 
 import java.awt.*;
-import java.util.ArrayList;
 import java.util.Iterator;
-import java.util.List;
 
 public class BrisanjeState implements State{
     @Override
@@ -53,4 +51,6 @@ public class BrisanjeState implements State{
     public void misOtpusten(int x, int y, DiagramView diagramView) {
 
     }
+
+
 }

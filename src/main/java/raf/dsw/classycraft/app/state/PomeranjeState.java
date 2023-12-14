@@ -62,6 +62,7 @@ public class PomeranjeState implements State {
         diagramView.repaint();
     }
 
+
     private Point calculateNewPosition(Rectangle selectedBounds, Rectangle otherBounds) {
         int newX = otherBounds.x + otherBounds.width;
         int newY = selectedBounds.y;

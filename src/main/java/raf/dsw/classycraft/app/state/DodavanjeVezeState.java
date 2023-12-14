@@ -5,12 +5,9 @@ import raf.dsw.classycraft.app.core.ApplicationFramework;
 import raf.dsw.classycraft.app.errorHandler.MessageType;
 import raf.dsw.classycraft.app.gui.swing.view.*;
 import raf.dsw.classycraft.app.model.*;
-import raf.dsw.classycraft.app.observer.NotificationType;
 
-import javax.swing.*;
 import java.awt.*;
-import java.util.ArrayList;
-import java.util.List;
+
 @Setter
 public class DodavanjeVezeState implements State{
 
@@ -116,6 +113,8 @@ public class DodavanjeVezeState implements State{
         currentDragPoint = null;
 
     }
+
+
     private boolean vezaPostoji(Interclass from, Interclass to, DiagramView diagramView) {
         for (ElementPainter painter : diagramView.getPainters()) {
             if (painter.getElement() instanceof Connection) {

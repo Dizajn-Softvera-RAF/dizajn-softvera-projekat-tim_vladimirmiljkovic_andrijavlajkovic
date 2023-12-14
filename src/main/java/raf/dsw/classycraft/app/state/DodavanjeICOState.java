@@ -40,6 +40,7 @@ public class DodavanjeICOState implements State{
 
     }
 
+
     private void createAndAddElement(String elementType, int x, int y, DiagramView diagramView) {
         String elementName = diagramView.getPackageView().generateElementName(diagramView.getDiagram(), elementType);
         Dimension size = odrediVelicinuNaOsnovuTipa(elementType);

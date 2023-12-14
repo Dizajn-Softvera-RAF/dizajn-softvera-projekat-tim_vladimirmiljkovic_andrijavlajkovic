@@ -11,6 +11,8 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.awt.event.MouseWheelEvent;
+import java.awt.geom.AffineTransform;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -21,6 +23,7 @@ public class DiagramView extends JPanel implements ISubscriber {
     private PackageView packageView;
     private List<ElementPainter> painters = new ArrayList<>();
     private List<ElementPainter> selectedModel = new ArrayList<>();
+    private AffineTransform transform = new AffineTransform();
 
     public DiagramView(Diagram diagram,PackageView packageView) {
         this.diagram = diagram;
@@ -58,13 +61,20 @@ public class DiagramView extends JPanel implements ISubscriber {
             super.mouseDragged(e);
             MainFrame.getInstance().getPackageView().misPovucen(e.getX(), e.getY(), diagramView);
         }
+
     }
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
         Graphics2D g2 = (Graphics2D) g;
-        for(ElementPainter p: painters){
-            p.paint(g2,p.getElement());
+
+
+        if (transform != null) {
+            g2.setTransform(transform);
+        }
+
+        for (ElementPainter p : painters) {
+            p.paint(g2, p.getElement());
         }
         for (ElementPainter p : selectedModel) {
             SelectedElementPainter selectedPainter = new SelectedElementPainter(p.getElement());

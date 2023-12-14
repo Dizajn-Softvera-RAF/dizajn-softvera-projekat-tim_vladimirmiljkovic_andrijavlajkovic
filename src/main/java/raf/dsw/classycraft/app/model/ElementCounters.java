@@ -8,6 +8,9 @@ public class ElementCounters {
     private int kompozicijaCount = 1;
     private int generalizacijaCount= 1;
     private int zavisnostCount= 1;
+    private int klasaCopyCount = 1;
+    private int interfejsCopyCount = 1;
+    private int enuumCopyCount = 1;
 
     public int getNextKlasaCount() {
         return klasaCount++;
@@ -24,4 +27,7 @@ public class ElementCounters {
     public int getNextKompozicijaCount(){return kompozicijaCount++;}
     public int getNextGeneralizacijaCount(){return generalizacijaCount++;}
     public int getNextZavisnostCount(){return zavisnostCount++;}
+    public int getNextKlasaCopyCount(){return klasaCopyCount++;}
+    public int getNextInterfejsCopyCount(){return interfejsCount++;}
+    public int getNextEnuumCopyCount(){return enuumCopyCount++;}
 }

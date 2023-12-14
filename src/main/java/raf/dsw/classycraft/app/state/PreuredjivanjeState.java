@@ -176,14 +176,6 @@ public class PreuredjivanjeState implements State {
             JTextField nazivField = new JTextField(clan.getNaziv(), 10);
             clanPanel.add(nazivField);
 
-            JButton removeBtn = new JButton("Obrisi");
-            removeBtn.addActionListener(e -> {
-                panel.remove(clanPanel);
-                panel.revalidate();
-                panel.repaint();
-            });
-            clanPanel.add(removeBtn);
-
             panel.add(clanPanel);
         }
 
@@ -287,4 +279,6 @@ public class PreuredjivanjeState implements State {
     @Override
     public void misOtpusten(int x, int y, DiagramView diagramView) {
     }
+
+
 }

@@ -8,6 +8,8 @@ public class StateManager {
     private SelekcijaState selekcijaState;
     private PomeranjeState pomeranjeState;
     private PreuredjivanjeState preuredjivanjeState;
+    private DupliranjeState dupliranjeState;
+    private ZoomState zoomState;
 
 
     public StateManager() {
@@ -21,6 +23,8 @@ public class StateManager {
         selekcijaState= new SelekcijaState();
         pomeranjeState = new PomeranjeState();
         preuredjivanjeState = new PreuredjivanjeState();
+        dupliranjeState = new DupliranjeState();
+        zoomState = new ZoomState();
         currentState = selekcijaState;
     }
 
@@ -39,5 +43,7 @@ public class StateManager {
     public void setSelekcijaState(){currentState = selekcijaState;}
     public void setPomeranjeState(){currentState = pomeranjeState; }
     public void setPreuredjivanjeState(){currentState = preuredjivanjeState;}
+    public void setDupliranjeState(){currentState = dupliranjeState;}
+    public void setZoomState(){currentState = zoomState;}
 
 }

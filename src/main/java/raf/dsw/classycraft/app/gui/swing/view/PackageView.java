@@ -102,6 +102,8 @@ public class PackageView extends JPanel implements ISubscriber {
     private void addTabForDiagram(Diagram diagram) {
         DiagramView view = new DiagramView(diagram, this);
         diagram.addSubscriber(view);  // Pretplata DiagramView-a na Diagram
+
+
         tabbedPane.addTab(diagram.getName(), view);
     }
     public void subscribeToPackage(Package pkg) {
@@ -183,6 +185,12 @@ public class PackageView extends JPanel implements ISubscriber {
     public void startPreuredjivanjeState(){
         this.stateManager.setPreuredjivanjeState();
     }
+    public void startDupliranjeState(){
+        this.stateManager.setDupliranjeState();
+    }
+    public void startZoomState(){
+        this.stateManager.setZoomState();
+    }
 
     public void misKliknut(int x, int y, DiagramView diagramView) {
         this.getStateManager().getCurrent().misKliknut(x,y,diagramView);
@@ -208,6 +216,9 @@ public class PackageView extends JPanel implements ISubscriber {
             case "Kompozicija": return "Kompozicija" + counters.getNextKompozicijaCount();
             case "Generalizacija": return "Generalizacija" + counters.getNextGeneralizacijaCount();
             case "Zavisnost": return "Zavisnost" + counters.getNextZavisnostCount();
+            case "KlasaKopija": return "_copy" + counters.getNextKlasaCopyCount();
+            case "InterfejsKopija": return "_copy" + counters.getNextInterfejsCopyCount();
+            case "EnuumKopija": return "_copy" + counters.getNextEnuumCopyCount();
             default: return "Element";
         }
     }
