@@ -180,6 +180,9 @@ public class PackageView extends JPanel implements ISubscriber {
     public void startPomeranjeState(){
         this.stateManager.setPomeranjeState();
     }
+    public void startPreuredjivanjeState(){
+        this.stateManager.setPreuredjivanjeState();
+    }
 
     public void misKliknut(int x, int y, DiagramView diagramView) {
         this.getStateManager().getCurrent().misKliknut(x,y,diagramView);

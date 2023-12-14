@@ -7,4 +7,8 @@ import lombok.Setter;
 @Setter
 public abstract class ClassContent {
     private String naziv;
+
+    public ClassContent(String naziv) {
+        this.naziv = naziv;
+    }
 }

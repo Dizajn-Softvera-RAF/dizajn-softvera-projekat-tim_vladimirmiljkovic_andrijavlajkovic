@@ -7,6 +7,7 @@ public class StateManager {
     private BrisanjeState brisanjeState;
     private SelekcijaState selekcijaState;
     private PomeranjeState pomeranjeState;
+    private PreuredjivanjeState preuredjivanjeState;
 
 
     public StateManager() {
@@ -19,25 +20,24 @@ public class StateManager {
         brisanjeState = new BrisanjeState();
         selekcijaState= new SelekcijaState();
         pomeranjeState = new PomeranjeState();
+        preuredjivanjeState = new PreuredjivanjeState();
         currentState = selekcijaState;
     }
 
     public State getCurrent(){
         return currentState;
     }
-
     public void setDodavanjeICOState(){
         currentState = dodavanjeICOState;
     }
-
     public void setDodavanjeVezeState(){
         currentState = dodavanjeVezeState;
     }
-
     public void setBrisanjeState(){
         currentState = brisanjeState;
     }
     public void setSelekcijaState(){currentState = selekcijaState;}
     public void setPomeranjeState(){currentState = pomeranjeState; }
+    public void setPreuredjivanjeState(){currentState = preuredjivanjeState;}
 
 }

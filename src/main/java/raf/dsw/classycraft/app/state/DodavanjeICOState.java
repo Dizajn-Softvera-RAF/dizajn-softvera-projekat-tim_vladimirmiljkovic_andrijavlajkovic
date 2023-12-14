@@ -2,9 +2,7 @@ package raf.dsw.classycraft.app.state;
 
 import raf.dsw.classycraft.app.core.ApplicationFramework;
 import raf.dsw.classycraft.app.errorHandler.MessageType;
-import raf.dsw.classycraft.app.gui.swing.view.DiagramView;
-import raf.dsw.classycraft.app.gui.swing.view.ElementPainter;
-import raf.dsw.classycraft.app.gui.swing.view.InterClassPainter;
+import raf.dsw.classycraft.app.gui.swing.view.*;
 import raf.dsw.classycraft.app.model.*;
 
 import javax.swing.*;
@@ -55,11 +53,26 @@ public class DodavanjeICOState implements State{
         element.setPosition(new Point(x, y));
         element.setSize(size);
 
-        InterClassPainter elementPainter = new InterClassPainter(element);
+        ElementPainter elementPainter;
+        switch (elementType) {
+            case "Klasa":
+                elementPainter = new KlasaPainter((Klasa) element);
+                break;
+            case "Enum":
+                elementPainter = new EnuumPainter((Enuum) element);
+                break;
+            case "Interfejs":
+                elementPainter = new InterfejsPainter((Interfejs) element);
+                break;
+            default:
+                throw new IllegalArgumentException("Nepoznat tip elementa: " + elementType);
+        }
+
         diagramView.getPainters().add(elementPainter);
         diagramView.getDiagram().addChild(element);
         diagramView.repaint();
     }
+
 
     private Dimension odrediVelicinuNaOsnovuTipa(String elementType) {
         switch (elementType) {

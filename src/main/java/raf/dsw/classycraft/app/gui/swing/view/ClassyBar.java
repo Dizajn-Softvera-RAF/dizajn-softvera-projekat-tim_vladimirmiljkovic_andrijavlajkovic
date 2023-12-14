@@ -12,7 +12,7 @@ public class ClassyBar extends JToolBar {
     private JButton btnSelect;
     private JButton btnMove;
     private JButton btnZoom;
-    private JButton btnDupliciraj;
+    private JButton btnDupliraj;
     private PackageView packageView;
 
     public ClassyBar(PackageView packageView) {
@@ -27,7 +27,7 @@ public class ClassyBar extends JToolBar {
         btnSelect = new JButton("Selektuj");
         btnMove = new JButton("Pomeraj");
         btnZoom = new JButton("Zumiraj");
-        btnDupliciraj = new JButton("Dupliciraj");
+        btnDupliraj = new JButton("Dupliraj");
 
         btnAddICO.addActionListener(e -> packageView.startDodavanjeICOState());
         btnAddVeza.addActionListener(e -> {
@@ -54,6 +54,7 @@ public class ClassyBar extends JToolBar {
         btnDelete.addActionListener(e -> packageView.startBrisanjeState());
         btnSelect.addActionListener(e -> packageView.startSelekcijaState());
         btnMove.addActionListener(e -> packageView.startPomeranjeState());
+        btnAddSadrzaj.addActionListener(e -> packageView.startPreuredjivanjeState());
 
         add(btnAddICO);
         add(btnAddVeza);
@@ -62,6 +63,6 @@ public class ClassyBar extends JToolBar {
         add(btnSelect);
         add(btnMove);
         add(btnZoom);
-        add(btnDupliciraj);
+        add(btnDupliraj);
     }
 }
