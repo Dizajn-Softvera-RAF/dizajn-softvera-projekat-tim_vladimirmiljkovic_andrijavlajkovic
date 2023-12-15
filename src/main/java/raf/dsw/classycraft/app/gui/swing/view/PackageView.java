@@ -13,6 +13,8 @@ import raf.dsw.classycraft.app.state.StateManager;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.AdjustmentEvent;
+import java.awt.event.AdjustmentListener;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -101,10 +103,24 @@ public class PackageView extends JPanel implements ISubscriber {
 
     private void addTabForDiagram(Diagram diagram) {
         DiagramView view = new DiagramView(diagram, this);
-        diagram.addSubscriber(view);  // Pretplata DiagramView-a na Diagram
+        diagram.addSubscriber(view);
+        view.setPreferredSize(new Dimension(5000,5000));
+        JScrollPane scrollPane = new JScrollPane(view);
+        scrollPane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
+        scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
 
+        AdjustmentListener repaintOnScroll = new AdjustmentListener() {
+            @Override
+            public void adjustmentValueChanged(AdjustmentEvent e) {
+                view.setScrollPosition(scrollPane.getHorizontalScrollBar().getValue(), scrollPane.getVerticalScrollBar().getValue());
+                view.repaint();
+            }
+        };
 
-        tabbedPane.addTab(diagram.getName(), view);
+        scrollPane.getHorizontalScrollBar().addAdjustmentListener(repaintOnScroll);
+        scrollPane.getVerticalScrollBar().addAdjustmentListener(repaintOnScroll);
+
+        tabbedPane.addTab(diagram.getName(), scrollPane);
     }
     public void subscribeToPackage(Package pkg) {
         if (this.paket != null) {
@@ -131,12 +147,16 @@ public class PackageView extends JPanel implements ISubscriber {
     private void removeTabForDiagram(Diagram diagram) {
         for (int i = 0; i < tabbedPane.getTabCount(); i++) {
             Component component = tabbedPane.getComponentAt(i);
-            if (component instanceof DiagramView) {
-                DiagramView view = (DiagramView) component;
-                if (view.getDiagram().equals(diagram)) {
-                    diagram.removeSubscriber(view);
-                    tabbedPane.remove(i);
-                    break;
+            if (component instanceof JScrollPane) {
+                JScrollPane scrollPane = (JScrollPane) component;
+                Component viewComponent = scrollPane.getViewport().getView();
+                if (viewComponent instanceof DiagramView) {
+                    DiagramView view = (DiagramView) viewComponent;
+                    if (view.getDiagram().equals(diagram)) {
+                        diagram.removeSubscriber(view);
+                        tabbedPane.remove(i);
+                        break;
+                    }
                 }
             }
         }

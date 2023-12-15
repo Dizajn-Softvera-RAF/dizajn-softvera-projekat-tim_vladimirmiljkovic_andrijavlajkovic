@@ -25,6 +25,8 @@ public class DiagramView extends JPanel implements ISubscriber {
     private List<ElementPainter> selectedModel = new ArrayList<>();
     private AffineTransform transform = new AffineTransform();
 
+    private int scrollX;
+    private int scrollY;
     public DiagramView(Diagram diagram,PackageView packageView) {
         this.diagram = diagram;
         this.packageView = packageView;
@@ -68,10 +70,11 @@ public class DiagramView extends JPanel implements ISubscriber {
         super.paintComponent(g);
         Graphics2D g2 = (Graphics2D) g;
 
-
         if (transform != null) {
-            g2.setTransform(transform);
+            g2.transform(transform);
         }
+
+        g2.translate(-scrollX, -scrollY);
 
         for (ElementPainter p : painters) {
             p.paint(g2, p.getElement());
@@ -80,7 +83,9 @@ public class DiagramView extends JPanel implements ISubscriber {
             SelectedElementPainter selectedPainter = new SelectedElementPainter(p.getElement());
             selectedPainter.paint(g2, p.getElement());
         }
-
     }
-
+    public void setScrollPosition(int x, int y) {
+        this.scrollX = x;
+        this.scrollY = y;
+    }
 }
