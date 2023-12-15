@@ -171,11 +171,15 @@ public class PackageView extends JPanel implements ISubscriber {
     private void updateDiagramTabName(Diagram diagram) {
         for (int i = 0; i < tabbedPane.getTabCount(); i++) {
             Component comp = tabbedPane.getComponentAt(i);
-            if (comp instanceof DiagramView) {
-                DiagramView view = (DiagramView) comp;
-                if (view.getDiagram().equals(diagram)) {
-                    tabbedPane.setTitleAt(i, diagram.getName());
-                    break;
+            if (comp instanceof JScrollPane) {
+                JScrollPane scrollPane = (JScrollPane) comp;
+                Component viewComponent = scrollPane.getViewport().getView();
+                if (viewComponent instanceof DiagramView) {
+                    DiagramView view = (DiagramView) viewComponent;
+                    if (view.getDiagram().equals(diagram)) {
+                        tabbedPane.setTitleAt(i, diagram.getName());
+                        break;
+                    }
                 }
             }
         }
